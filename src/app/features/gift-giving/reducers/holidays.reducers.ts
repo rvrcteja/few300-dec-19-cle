@@ -13,7 +13,14 @@ export interface HolidayState extends EntityState<HolidayEntity> {
 
 export const adapter = createEntityAdapter<HolidayEntity>();
 
-const initialState = adapter.getInitialState();
+// const initialState = adapter.getInitialState();
+const initialState: HolidayState = {
+  ids: ['1', '2'],
+  entities: {
+    1: { id: '1', name: 'Christmas', date: new Date(2019, 11, 25).toISOString() },
+    2: { id: '2', name: 'Jeff\'s Birthday', date: new Date(2020, 3, 20).toISOString() }
+  }
+};
 
 const reducerFunction = createReducer(
   initialState
