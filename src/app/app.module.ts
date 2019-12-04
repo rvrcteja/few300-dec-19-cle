@@ -9,6 +9,7 @@ import { GiftGivingModule } from './features/gift-giving/gift-giving.module';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers } from './reducers';
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({
@@ -21,7 +22,14 @@ import { reducers } from './reducers';
     BrowserModule,
     GiftGivingModule,
     AppRoutingModule,
-    StoreModule.forRoot(reducers),
+    StoreModule.forRoot(reducers, {
+      runtimeChecks: {
+        strictActionImmutability: !environment.production,
+        strictActionSerializability: true,
+        strictStateImmutability: true,
+        strictStateSerializability: true // <- this one will cause the default Routerstore to fail.
+      }
+    }),
     StoreDevtoolsModule.instrument()
   ],
   providers: [],
