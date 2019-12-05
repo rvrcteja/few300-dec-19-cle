@@ -17,6 +17,7 @@ export function reducer(state: ErrorState = initialState, action: Action) {
 
 const myReducer = createReducer(
   initialState,
+
   on(actions.applicationError, (state, action) => ({
     hasError: true,
     errorMessage: action.message
