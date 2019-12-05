@@ -23,7 +23,7 @@ export class RecipientEntryComponent implements OnInit, OnDestroy {
   constructor(private formBuilder: FormBuilder, private store: Store<GiftGivingState>) {
     this.holidaysArray = new FormArray([], minNumberOfSelectedCheckboxes(1));
     this.name = new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]);
-    this.name.valueChanges.subscribe(v => console.log(v)); // Need to have unsubscribe when there is subscribe on an observable
+    // this.name.valueChanges.subscribe(v => console.log(v)); // Need to have unsubscribe when there is subscribe on an observable
     this.email = new FormControl('', Validators.email);
     this.form = formBuilder.group({
       name: this.name,
@@ -44,7 +44,7 @@ export class RecipientEntryComponent implements OnInit, OnDestroy {
     this.createCheckboxes();
   }
   ngOnDestroy() {
-    this.changesSub.unsubscribe();
+    // this.changesSub.unsubscribe();
   }
   submit(focusme: HTMLInputElement) {
     const selectedHolidayIds = this.form.value.holidays

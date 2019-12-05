@@ -14,6 +14,10 @@ import { HolidayListControlsComponent } from './containers/holidays/holiday-list
 import { RecipientEntryComponent } from './containers/recipients/recipient-entry/recipient-entry.component';
 import { RecipientListComponent } from './containers/recipients/recipient-list/recipient-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EffectsModule } from '@ngrx/effects';
+import { AppEffects } from './effects/app.effects';
+import { HolidaysEffects } from './effects/holidays.effects';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -37,12 +41,25 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [GiftGivingComponent, NavComponent, DashboardComponent, RecipientsComponent, HolidaysComponent, HolidayEntryComponent, HolidayListComponent, HolidayListControlsComponent, RecipientEntryComponent, RecipientListComponent],
+  declarations: [
+    GiftGivingComponent,
+    NavComponent,
+    DashboardComponent,
+    RecipientsComponent,
+    HolidaysComponent,
+    HolidayEntryComponent,
+    HolidayListComponent,
+    HolidayListControlsComponent,
+    RecipientEntryComponent,
+    RecipientListComponent],
   imports: [
     CommonModule,
+    HttpClientModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature(featureName, reducers),
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    EffectsModule.forFeature([AppEffects, HolidaysEffects])
+  ],
+  exports: [GiftGivingComponent]
 })
 export class GiftGivingModule { }
